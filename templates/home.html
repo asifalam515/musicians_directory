@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Welcome from home bro!!!!!</h1>
+
+{% comment %} table {% endcomment %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for singleData in  data %}
+     <tr>
+        <th scope="row"> {{singleData.id}} </th>
+        <td> {{singleData.musician.first_name |title }} </td>
+        <td> {{singleData.musician.email}} </td>
+        <td>{{singleData.rating}} </td>
+        <td> {{singleData.musician.instrument_type}} </td>
+        <td> {{singleData.Album_name}} </td>
+        <td> {{singleData.album_release_date}} </td>
+        <td>
+           <a href=" {% url 'edit_album' singleData.id %} " class="btn btn-warning btn-sm">Edit Album</a> 
+           <a href=" {% url 'delete_musician' singleData.musician.id %} " class="btn btn-danger btn-sm">Delete Musician</a> 
+           
+        </td>
+      </tr>
+     
+     
+     
+     {% endfor %}
+      
+    </tbody>
+  </table>
+
+
+{% endblock content %}
